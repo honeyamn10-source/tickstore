@@ -1,6 +1,10 @@
 <!-- tickstore | Bittu Sharma | ultra-level professional README -->
 <p align="center">
-  <img src="docs/assets/logo.svg" alt="TickStore logo" width="100%" />
+  <img src="docs/assets/logo.svg" alt="tickstore logo" width="100%" />
+</p>
+
+
+<p align="center">
 </p>
 
 
