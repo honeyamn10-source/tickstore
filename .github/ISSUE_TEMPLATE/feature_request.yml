@@ -1,0 +1,52 @@
+name: Feature request
+description: Suggest an enhancement for tickstore
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals are welcome. Reminder: tickstore is a zero-dependency,
+        standard-library-only, offline-testable library — please pitch
+        accordingly or explain why the rule should bend.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What are you trying to do that tickstore cannot express today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Sketch the API and behavior you would like to see.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else have you tried, and why is it not good enough?
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Affected area
+      options:
+        - Provider
+        - Store / SQLite
+        - Resampling
+        - Indicators
+        - CLI
+        - Docs / examples
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acceptance bar
+      options:
+        - label: Adds no runtime dependencies.
+        - label: Can be tested fully offline.
+        - label: Ships with tests, docs, and a CHANGELOG entry.

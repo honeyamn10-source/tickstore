@@ -1,0 +1,65 @@
+name: Bug report
+description: Report a reproducible defect in tickstore
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Follow the template;
+        the more precise the reproduction, the faster it gets fixed.
+  - type: input
+    id: version
+    attributes:
+      label: tickstore version
+      description: Output of `python -c "import tickstore; print(tickstore.__version__)"`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `python --version`.
+      placeholder: "3.12.2"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Linux (Debian 12)"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste a minimal script that triggers the bug. For provider
+        issues, inject a FakeTransport with recorded fixtures — never require
+        a live network call.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error output
+      description: Paste any traceback or CLI output.
+      render: shell
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Verification
+      options:
+        - label: I confirmed the bug reproduces against the latest commit on `main`.
+        - label: I confirmed the test command `python -m pytest tests -q` runs against my local checkout.
+    validations:
+      required: false

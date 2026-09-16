@@ -1,0 +1,59 @@
+{
+  "chart": {
+    "result": [
+      {
+        "meta": {
+          "symbol": "MSFT",
+          "interval": "1h",
+          "range": "5d",
+          "regularMarketTime": 1767236400,
+          "exchangeName": "NMS",
+          "timezone": "EST"
+        },
+        "timestamp": [
+          1767225600,
+          1767229200,
+          1767232800,
+          null
+        ],
+        "indicators": {
+          "quote": [
+            {
+              "open": [
+                410.0,
+                null,
+                410.5,
+                414.0
+              ],
+              "high": [
+                412.0,
+                411.5,
+                415.0,
+                415.5
+              ],
+              "low": [
+                408.5,
+                409.0,
+                410.0,
+                413.0
+              ],
+              "close": [
+                411.25,
+                410.5,
+                414.75,
+                414.5
+              ],
+              "volume": [
+                1200000,
+                null,
+                1500000,
+                800000
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "error": null
+  }
+}
