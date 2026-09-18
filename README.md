@@ -35,6 +35,9 @@ architectural decision recorded in the ADR trail.
 
 ```bash
 # Clone and install
+
+**tracked surface:** tests + 3 ADRs + CI — a real time-series store, docs-first.
+
 git clone https://github.com/honeyamn10-source/tickstore.git
 cd tickstore
 # Follow repo-specific setup instructions
