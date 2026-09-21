@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tickstore — market data store with indicators</title>
+  <meta name="description" content="tickstore is a market data store with CLI for fetch, status, indicators (SMA, RSI, ATR, VWAP, Bollinger). 104 tests, zero deps, Python 3.9-3.13.">
+  <meta name="keywords" content="market data, tick data, candlesticks, technical indicators, SMA, RSI, ATR, VWAP, Bollinger Bands, python, cli">
+  <meta name="author" content="Bittu Sharma">
+  <link rel="canonical" href="https://honeyamn10-source.github.io/tickstore/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="tickstore">
+  <meta property="og:title" content="tickstore — market data store with indicators">
+  <meta property="og:description" content="Market data store with CLI fetch/status/indicators. SMA, RSI, ATR, VWAP, Bollinger. 104 tests, zero deps.">
+  <meta property="og:url" content="https://honeyamn10-source.github.io/tickstore/">
+  <meta property="og:image" content="https://honeyamn10-source.github.io/tickstore/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="tickstore — market data store with indicators">
+  <meta name="twitter:description" content="Market data store with CLI. SMA, RSI, ATR, VWAP, Bollinger. 104 tests, zero deps.">
+  <meta name="twitter:image" content="https://honeyamn10-source.github.io/tickstore/og.png">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#10b981">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "tickstore",
+    "url": "https://honeyamn10-source.github.io/tickstore/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "OS Independent (Python 3.9-3.13)",
+    "description": "Market data store with CLI for fetch, status, indicators. SMA, RSI, ATR, VWAP, Bollinger Bands.",
+    "author": { "@type": "Person", "name": "Bittu Sharma" },
+    "license": "https://github.com/honeyamn10-source/tickstore/blob/main/LICENSE",
+    "codeRepository": "https://github.com/honeyamn10-source/tickstore"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="tickstore home">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#10b981"/><text x="32" y="45" font-family="ui-monospace,Consolas,monospace" font-size="34" font-weight="700" fill="#0b0e14" text-anchor="middle">T</text></svg>
+        tickstore
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#cli">CLI</a>
+        <a href="#indicators">Indicators</a>
+        <a href="#providers">Providers</a>
+        <a href="#architecture">Architecture</a>
+        <a href="https://github.com/honeyamn10-source/tickstore" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">☀️</button>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    </div>
+    <div class="drawer-backdrop"></div>
+    <nav class="mobile-drawer" aria-label="Mobile navigation">
+      <a href="#cli">CLI</a>
+      <a href="#indicators">Indicators</a>
+      <a href="#providers">Providers</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/honeyamn10-source/tickstore" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-inner">
+            <span class="status"><span class="dot" aria-hidden="true"></span> v0.1.0 Alpha · MIT · Python 3.9–3.13 · zero deps</span>
+            <h1>Market data, stored right.</h1>
+            <p class="lede">tickstore fetches, stores, and analyzes market data. CLI for fetch, status, and technical indicators (SMA, RSI, ATR, VWAP, Bollinger Bands). 104 tests. Zero dependencies. Python 3.9–3.13.</p>
+            <div class="badge-row">
+              <span class="badge badge-b">104 tests</span>
+              <span class="badge badge-b">zero deps</span>
+              <span class="badge badge-b">5 indicators</span>
+              <span class="badge badge-b">CLI</span>
+            </div>
+            <div class="btn-row">
+              <a class="btn btn-primary btn-lg" href="#cli">Try CLI</a>
+              <a class="btn btn-ghost btn-lg" href="https://github.com/honeyamn10-source/tickstore" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+          <div class="term" role="img" aria-label="CLI demo">
+            <div class="term-bar"><i class="t1"></i><i class="t2"></i><i class="t3"></i><span>tickstore</span></div>
+            <div class="term-body" data-type="true" data-type-speed="12">
+$ <span class="c1">tickstore fetch</span> AAPL --start 2024-01-01 --end 2024-12-31
+<span class="dim">Fetching AAPL from yfinance...</span>
+<span class="dim">[████████████████████] 100% | 252 candles</span>
+<span class="c4">✓</span> Stored 252 candles for AAPL
+
+$ <span class="c1">tickstore status</span> AAPL
+<span class="c3">┌────────────┬────────────┬────────┬──────────┐</span>
+<span class="c3">│ Symbol     │ Candles    │ Range  │ Last     │</span>
+<span class="c3">├────────────┼────────────┼────────┼──────────┤</span>
+<span class="c3">│ AAPL       │ 252        │ 2024   │ 185.92   │</span>
+<span class="c3">│ MSFT       │ 252        │ 2024   │ 421.34   │</span>
+<span class="c3">│ SPY        │ 252        │ 2024   │ 589.10   │</span>
+<span class="c3">└────────────┴────────────┴────────┴──────────┘</span>
+
+$ <span class="c1">tickstore indicators</span> AAPL --indicator rsi --period 14
+<span class="c3">┌────────────┬────────────┬────────┐</span>
+<span class="c3">│ Date       │ Close      │ RSI(14)│</span>
+<span class="c3">├────────────┼────────────┼────────┤</span>
+<span class="c3">│ 2024-12-27 │ 185.92     │ 58.3   │</span>
+<span class="c3">│ 2024-12-26 │ 184.40     │ 55.1   │</span>
+<span class="c3">│ 2024-12-24 │ 183.25     │ 52.8   │</span>
+<span class="c3">└────────────┴────────────┴────────┘</span>
+
+$ <span class="c1">tickstore indicators</span> AAPL --all
+<span class="c3">SMA(20):  182.45  |  SMA(50): 178.92</span>
+<span class="c3">RSI(14):  58.3    |  ATR(14): 2.34</span>
+<span class="c3">VWAP:     183.10  |  BB(20): [179.2, 186.8]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: var(--space-4);">
+      <div class="wrap">
+        <div class="stats-row">
+          <div class="stat"><div class="stat-value">104</div><div class="stat-label">Tests</div></div>
+          <div class="stat"><div class="stat-value">0</div><div class="stat-label">Dependencies</div></div>
+          <div class="stat"><div class="stat-value">5</div><div class="stat-label">Indicators</div></div>
+          <div class="stat"><div class="stat-value">3</div><div class="stat-label">Providers</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cli" class="section reveal">
+      <div class="wrap">
+        <h2>CLI Commands</h2>
+        <p class="lede">Three commands. Composable. Scriptable.</p>
+        <div class="grid cards">
+          <article class="card"><h3>fetch</h3><pre><code>$ tickstore fetch SYMBOL \
+    --start 2024-01-01 \
+    --end 2024-12-31 \
+    --provider yfinance \
+    --interval 1d</code></pre><p>Fetches OHLCV from provider, stores as candles. Idempotent.</p></article>
+          <article class="card"><h3>status</h3><pre><code>$ tickstore status [SYMBOL]
+$ tickstore status --all
+$ tickstore status --format json</code></pre><p>Shows stored symbols, candle counts, date ranges, last price.</p></article>
+          <article class="card"><h3>indicators</h3><pre><code>$ tickstore indicators SYMBOL \
+    --indicator rsi --period 14
+$ tickstore indicators SYMBOL --all
+$ tickstore indicators SYMBOL \
+    --indicator sma --period 20,50</code></pre><p>Computes on stored candles. Outputs table or JSON.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="indicators" class="section alt reveal">
+      <div class="wrap">
+        <h2>Technical Indicators</h2>
+        <p class="lede">Pure Python implementations. No TA-Lib. No NumPy. Pure standard library math.</p>
+        <div class="grid cards">
+          <article class="card"><h3>SMA — Simple Moving Average</h3><pre><code>sma = sum(closes[-period:]) / period</code></pre><p>Periods: 20, 50, 200. Crossovers, trend detection.</p></article>
+          <article class="card"><h3>RSI — Relative Strength Index</h3><pre><code>rs = avg_gain / avg_loss
+rsi = 100 - (100 / (1 + rs))</code></pre><p>Wilder's smoothing. Period 14 default. Overbought >70, oversold <30.</p></article>
+          <article class="card"><h3>ATR — Average True Range</h3><pre><code>tr = max(high-low, |high-prev_close|, |low-prev_close|)
+atr = wilders_smoothing(tr, period)</code></pre><p>Volatility measure. Position sizing, stop-loss placement.</p></article>
+          <article class="card"><h3>VWAP — Volume Weighted Average Price</h3><pre><code>vwap = sum(close * volume) / sum(volume)</code></pre><p>Institutional benchmark. Intraday mean reversion.</p></article>
+          <article class="card"><h3>Bollinger Bands</h3><pre><code>middle = sma(period)
+upper = middle + 2 * std(period)
+lower = middle - 2 * std(period)</code></pre><p>Volatility bands. Squeeze = breakout signal. %B indicator.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="providers" class="section reveal">
+      <div class="wrap">
+        <h2>Data Providers</h2>
+        <p class="lede">Pluggable. Extensible. Each provider implements the same interface.</p>
+        <div class="grid cards">
+          <article class="card"><h3>yfinance (default)</h3><p>Yahoo Finance. Free. Daily/weekly/monthly. No API key. Rate limited.</p></article>
+          <article class="card"><h3>Alpha Vantage</h3><p>Free tier: 25 req/day. Intraday, fundamentals, forex, crypto. API key required.</p></article>
+          <article class="card"><h3>Stooq</h3><p>Free. Polish/US markets. CSV download. No API key. Limited history.</p></article>
+          <article class="card"><h3>Custom Provider</h3><p>Implement <code>BaseProvider</code>. <code>fetch(symbol, start, end, interval)</code> → list of candles.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section alt reveal">
+      <div class="wrap">
+        <h2>Architecture</h2>
+        <div class="term" role="img" aria-label="Module structure">
+          <div class="term-bar"><i class="t1"></i><i class="t2"></i><i class="t3"></i><span>tickstore/</span></div>
+          <div class="term-body">
+<span class="c3">tickstore/</span>
+<span class="c1">├── cli.py</span>           <span class="dim"># Typer CLI: fetch, status, indicators</span>
+<span class="c1">├── candle.py</span>          <span class="dim"># Candle dataclass, validation, serialization</span>
+<span class="c1">├── store.py</span>           <span class="dim"># SQLite storage, indexing, upserts</span>
+<span class="c1">├── providers/</span>
+<span class="c1">│   ├── base.py</span>        <span class="dim"># BaseProvider abstract class</span>
+<span class="c1">│   ├── yfinance.py</span>    <span class="dim"># Yahoo Finance implementation</span>
+<span class="c1">│   ├── alphavantage.py</span> <span class="dim"># Alpha Vantage implementation</span>
+<span class="c1">│   └── stooq.py</span>       <span class="dim"># Stooq implementation</span>
+<span class="c1">├── indicators/</span>
+<span class="c1">│   ├── base.py</span>        <span class="dim"># Indicator protocol</span>
+<span class="c1">│   ├── sma.py</span>         <span class="dim"># Simple Moving Average</span>
+<span class="c1">│   ├── rsi.py</span>         <span class="dim"># Relative Strength Index</span>
+<span class="c1">│   ├── atr.py</span>         <span class="dim"># Average True Range</span>
+<span class="c1">│   ├── vwap.py</span>        <span class="dim"># Volume Weighted Average Price</span>
+<span class="c1">│   └── bollinger.py</span>   <span class="dim"># Bollinger Bands</span>
+<span class="c1">├── resample.py</span>        <span class="dim"># Timeframe resampling (1m → 5m, 1h, 1d)</span>
+<span class="c1">└── __main__.py</span>        <span class="dim"># Entry point</span>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="cta-banner">
+          <h3>Market data without the bloat.</h3>
+          <p style="max-width: 600px; margin: 0 auto var(--space-5);">104 tests. Zero deps. Pure Python. CLI-first.</p>
+          <div class="btn-row" style="justify-content: center;">
+            <a class="btn btn-primary btn-lg" href="https://github.com/honeyamn10-source/tickstore" target="_blank" rel="noopener">GitHub →</a>
+            <a class="btn btn-ghost btn-lg" href="#cli">CLI Reference</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>tickstore v0.1.0 Alpha · <a href="https://github.com/honeyamn10-source/tickstore">GitHub</a> · <a href="https://github.com/honeyamn10-source/tickstore/blob/main/LICENSE">MIT License</a></p>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
