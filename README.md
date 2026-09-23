@@ -1,87 +1,55 @@
-<!-- tickstore | Bittu Sharma | ultra-level professional README -->
-<p align="center">
-  <img src="docs/assets/logo.svg" alt="tickstore logo" width="100%" />
-</p>
+![tickstore — Market data, close to the source](docs/assets/cover.svg)
 
+# tickstore
 
-<p align="center">
-</p>
+Fetch OHLCV market data, keep it in SQLite, and compute indicators with a Python library built on the standard library.
 
+[Project website](https://honeyamn10-source.github.io/tickstore/) · [Source](https://github.com/honeyamn10-source/tickstore) · [Build results](https://github.com/honeyamn10-source/tickstore/actions) · [Issues](https://github.com/honeyamn10-source/tickstore/issues)
 
-<p align="center">
-  <strong style="font-size:3rem;color:#0EA5E9;">tickstore</strong>
-</p>
-<p align="center">
-  <em style="font-size:1.2rem;color:#94A3B8;">Time-series tick storage for quant research</em>
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-Python-blue?logo=python&logoColor=white" alt="Python"/>  <img src="https://img.shields.io/badge/NumPy-NumPy-blue?logo=numpy&logoColor=white" alt="NumPy"/>  <img src="https://img.shields.io/badge/Polars-Polars-blue?logo=polars&logoColor=white" alt="Polars"/>  <img src="https://img.shields.io/badge/Parquet-Parquet-blue?logo=parquet&logoColor=white" alt="Parquet"/>
-  <img src="https://img.shields.io/badge/License-MIT-blue" alt="MIT License"/>
-  <img src="https://img.shields.io/badge/Loopback-Only-0EA5E9" alt="Loopback Only"/>
-  <img src="https://img.shields.io/badge/ADR-Trail%20(0001..0003)-F59E0B" alt="ADR Trail"/>
-</p>
+## What it does
 
----
+- **Collect.** Binance and Yahoo provider adapters supply OHLCV candles.
+- **Store.** Local SQLite storage keeps the series available to your own research tools.
+- **Calculate.** Resampling and SMA, EMA, RSI, ATR, Bollinger band and VWAP helpers.
 
-## Why this exists
+## Start from source
 
-A professional time-series tick storage for quant research built to the portfolio ultra-level standard:
-honest code, loopback-only demos, zero personal emails in history, and every
-architectural decision recorded in the ADR trail.
-
----
-
-## Quick Start
+Python 3.9 or later. Network access is required for provider downloads.
 
 ```bash
-# Clone and install
-
-**tracked surface:** tests + 3 ADRs + CI — a real time-series store, docs-first.
-
 git clone https://github.com/honeyamn10-source/tickstore.git
 cd tickstore
-# Follow repo-specific setup instructions
+python -m pip install .
+tickstore fetch BTCUSDT --exchange binance --interval 1h --limit 100 --save
+tickstore status BTCUSDT --interval 1h
+tickstore indicators BTCUSDT --interval 1h --sma 20 --rsi 14
 ```
 
----
+## Check your changes
 
-## Features
-
-- Professional codebase with full test coverage
-- Loopback-only serving — zero unauthenticated remote access
-- ADR trail documenting all architectural decisions
-- CI/CD pipeline with lint, test, typecheck, and build
-- Professional identity on all commits
-
----
-
-## Architecture
-
-```mermaid
-graph TB
-    subgraph "Client"
-        UI[Web UI / CLI]
-    end
-    subgraph "Server"
-        API[API Layer]
-        DB[(Database)]
-    end
-    UI --> API
-    API --> DB
-    API -->|Loopback Only| LB[127.0.0.1]
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest
 ```
 
----
+These are the repository’s checks, not a claim of complete test coverage. See [GitHub Actions](https://github.com/honeyamn10-source/tickstore/actions) for the result on a specific commit.
 
-## Security
+## Scope and limitations
 
-- Loopback-only serving (127.0.0.1)
-- Professional commit identity
-- Zero personal emails in history
-- ADR trail for all decisions
+This stores candle data, not an exchange tick feed. Provider availability, rate limits and data quality vary; it does not execute trades.
 
----
+## Find your way around
+
+| Source | Purpose |
+| --- | --- |
+| [`tickstore/providers.py`](tickstore/providers.py) | Provider adapters |
+| [`tickstore/store.py`](tickstore/store.py) | SQLite storage |
+| [`examples/quantlab.py`](examples/quantlab.py) | Research example |
+
+## Contributing
+
+Include the command you ran, your runtime version, a minimal reproduction and the expected result in an issue. Remove credentials and personal data from logs. Follow [CONTRIBUTING.md](CONTRIBUTING.md) when proposing a change.
 
 ## License
 
-MIT © 2026 Bittu Sharma
+MIT — see [LICENSE](LICENSE). Third-party dependencies retain their own licenses.
