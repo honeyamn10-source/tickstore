@@ -15,6 +15,18 @@
 </div>
 <!-- repo-badges:end -->
 
+<!-- professional-meta:start -->
+<div align="center">
+
+[![ci](https://github.com/honeyamn10-source/tickstore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/honeyamn10-source/tickstore/actions/workflows/ci.yml) [![codeql](https://github.com/honeyamn10-source/tickstore/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/honeyamn10-source/tickstore/actions/workflows/codeql.yml)
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white) ![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
+
+[Documentation](docs) · [Examples](examples) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
+
+</div>
+<!-- professional-meta:end -->
+
 
 Fetch OHLCV market data, keep it in SQLite, and compute indicators with a Python library built on the standard library.
 
